@@ -1,14 +1,14 @@
 var path = require('path');
 
-var friends = require('../data/friends.js');
+var listOFriends = require('../data/Friends.js');
 
 module.exports = function(app) {
 
-	app.get('/api/friends', function(req, res) {
-		res.json(friends);
+	app.get('/api/listOlistOFriends', function(req, res) {
+		res.json(listOFriends);
 	});
 
-	app.post('/api/friends', function(req, res) {
+	app.post('/api/listOlistOFriends', function(req, res) {
 		var userInput = req.body;
 
 		var userResponses = userInput.scores;
@@ -17,22 +17,22 @@ module.exports = function(app) {
 		var matchImage = '';
 		var totalDifference = 10000; 
 
-		for (var i = 0; i < friends.length; i++) {
+		for (var i = 0; i < listOFriends.length; i++) {
 
 			var diff = 0;
 			for (var j = 0; j < userResponses.length; j++) {
-				diff += Math.abs(friends[i].scores[j] - userResponses[j]);
+				diff += Math.abs(listOFriends[i].scores[j] - userResponses[j]);
 			}
 
 			if (diff < totalDifference) {
 
 				totalDifference = diff;
-				matchName = friends[i].name;
-				matchImage = friends[i].photo;
+				matchName = listOFriends[i].name;
+				matchImage = listOFriends[i].photo;
 			}
 		}
 
-		friends.push(userInput);
+		listOFriends.push(userInput);
 
 		res.json({status: 'OK', matchName: matchName, matchImage: matchImage});
 	});
